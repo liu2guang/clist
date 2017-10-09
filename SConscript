@@ -1,4 +1,4 @@
-from building import *
+from building import * 
 
 # get current dir path
 cwd = GetCurrentDir()
