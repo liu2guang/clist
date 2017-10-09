@@ -137,7 +137,7 @@ list_node_t *list_find(list_t *self, void *val)
     list_iterator_t *it = list_iterator_new(self, LIST_HEAD);
     list_node_t *node;
 
-    while((node = list_iterator_next(it))) 
+    while((node = list_iterator_next(it)) == NULL) 
     {
         if(self->match) 
         {
@@ -190,14 +190,14 @@ list_node_t *list_at(list_t *self, int index)
 
 void list_remove(list_t *self, list_node_t *node)
 {
-  node->prev ? (node->prev->next = node->next) : (self->head = node->next);
-  node->next ? (node->next->prev = node->prev) : (self->tail = node->prev);
+    node->prev ? (node->prev->next = node->next) : (self->head = node->next);
+    node->next ? (node->next->prev = node->prev) : (self->tail = node->prev);
 
-  if(self->free) 
-  {
-      self->free(node->val);
-  }
+    if(self->free) 
+    {
+        self->free(node->val);
+    }
 
-  LIST_FREE(node);
-  --self->len;
+    LIST_FREE(node);
+    --self->len;
 }

@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+#include <stdlib.h>
 #include <rtthread.h>
 
 #define LIST_VERSION "1.0.0"
@@ -46,7 +47,7 @@ typedef struct
 } list_iterator_t;
 
 list_node_t *list_node_new(void *val);
-list_t *list_new();
+list_t *list_new(void);
 list_node_t *list_rpush(list_t *self, list_node_t *node);
 list_node_t *list_lpush(list_t *self, list_node_t *node);
 list_node_t *list_find(list_t *self, void *val);
